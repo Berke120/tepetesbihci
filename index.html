@@ -95,6 +95,18 @@ main.container,
     display: none !important;
 }
 
+ /* SAĞ TARAF - DAİRE LOGO */
+        .navbar-right-logo img {
+            height: 70px;
+            width: 70px;
+            border-radius: 50%; /* Tam daire yapar */
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: 0.3s ease;
+        }
+
+        .navbar-right-logo img:hover { transform: scale(1.1); }
+
 /* 1. YENİ ANA BÖLÜM: HERO-DOUBLE (Sitenin Başı Burası Olacak) */
 .hero-double {
     display: flex;
