@@ -230,6 +230,47 @@
             .hero-image-wrapper img { width: 48%; }
             h2 { font-size: 1.5rem; }
         }
+
+        /* MOBİL DÜZENLEMESİ (768px'den küçük ekranlar için) */
+@media (max-width: 768px) {
+    .navbar {
+        height: auto; /* Sabit yükseklik yerine içeriğe göre ayarla */
+        padding: 10px 5%;
+        flex-direction: column; /* Öğeleri (Logo ve Linkler) alt alta diz */
+        gap: 8px;
+    }
+
+    .navbar h1 {
+        font-size: 1.3rem; /* "Tepe Tesbih" yazısını küçült */
+        letter-spacing: 1px;
+    }
+
+    .nav-links {
+        margin: 0;
+        gap: 15px; /* Linklerin arasını biraz daralt */
+    }
+
+    .nav-links a {
+        font-size: 0.75rem; /* Link yazılarını küçült */
+        margin-left: 0; /* Mobilde soldaki gereksiz boşluğu kaldır */
+    }
+
+    /* Kırmızı daire ile işaretlediğin yuvarlak logo mobilde çok yer kaplıyorsa: */
+    .navbar-right-logo img {
+        max-height: 45px; /* Logoyu mobilde küçült */
+        margin-top: 5px;
+    }
+
+    /* İçeriğin (Hero kısmının) navbar'ın altında kalmaması için */
+    body {
+        padding-top: 110px; 
+    }
+
+    /* Hero (Başlık) kısmındaki büyük yazıyı küçültelim ki ekranı kapatmasın */
+    .hero-text-box h2 {
+        font-size: 1.8rem;
+    }
+}
     </style>
 </head>
 <body>
