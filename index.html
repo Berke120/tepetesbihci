@@ -30,6 +30,11 @@
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* HAREKET İÇİN ŞART */
         }
 
         .navbar h1 {
@@ -236,8 +241,8 @@
     .navbar {
         height: auto; /* Sabit yükseklik yerine içeriğe göre ayarla */
         padding: 10px 5%;
-        flex-direction: column; /* Öğeleri (Logo ve Linkler) alt alta diz */
-        gap: 8px;
+        flex-direction: row; /* Öğeleri (Logo ve Linkler) alt alta diz */
+        padding:0 15px
     }
 
     .navbar h1 {
@@ -245,10 +250,9 @@
         letter-spacing: 1px;
     }
 
-    .nav-links {
-        margin: 0;
-        gap: 15px; /* Linklerin arasını biraz daralt */
-    }
+   
+    .nav-links { display: none; } /* Mobilde linkleri gizlemek alanı %50 ferahlatır */
+    
 
     .nav-links a {
         font-size: 0.75rem; /* Link yazılarını küçült */
@@ -363,6 +367,40 @@
         &copy; 2026 Tepe Tesbih. Tüm Hakları Saklıdır.
     </div>
 </footer>
+
+<script>
+    // Sayfanın iskeleti tam yüklenmeden JS çalışmasın diye bu kalıbı kullanıyoruz
+    window.onload = function() {
+        
+        let lastScrollTop = 0;
+        // Satır 6: Navbar elemanını seçiyoruz
+        const navbar = document.querySelector(".navbar");
+
+        // HATA ÖNLEYİCİ: Eğer sayfada .navbar sınıfı yoksa kodu burada durdur
+        if (!navbar) {
+            console.warn("Uyarı: .navbar sınıfı bulunamadı. Lütfen HTML'i kontrol et.");
+            return;
+        }
+
+        // Başlangıçta navbar'ın 'top' değerini sabitleyelim
+        navbar.style.top = "0";
+
+        window.addEventListener("scroll", function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Aşağı kaydırırken (Satır 22-23 civarı hataları önlemek için style kontrolü)
+                navbar.style.top = "-120px"; 
+            } else {
+                // Yukarı kaydırırken (Satır 24 civarı)
+                navbar.style.top = "0";
+            }
+            
+            // Son scroll değerini güncelle
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+        }, { passive: true }); // Mobilde performans artırır
+    };
+</script>
 
 </body>
 </html>
